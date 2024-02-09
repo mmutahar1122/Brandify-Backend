@@ -5,6 +5,7 @@ const signupUser = async (req, res) => {
     try {
 
         const { fname, lname, email, password } = req.body;
+        console.log("SignUp Users",req.body)
 
         const userExist = await Signupusers.findOne({ email });
 
@@ -17,6 +18,7 @@ const signupUser = async (req, res) => {
         const newUser = await Signupusers.create({ fname, lname, email, password : hash_password });
 
         // console.log("newUser", newUser);
+        console.log("req.err",req.err);
 
         res.status(201).json({newUser, token : await newUser.TokenGenerate(), userId: newUser._id});
     } catch (error) {
