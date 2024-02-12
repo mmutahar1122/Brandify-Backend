@@ -3,6 +3,7 @@ require('dotenv').config()
 const connectdb = require("../src/db")
 const express=require('express');
 const router= require("./Routes/index.js")
+const Errhandler = require("./err-handler/index.js")
 const app=express();
 const port=3003;
 const cors = require("cors")
@@ -17,8 +18,8 @@ const corsOptions= {
 }
 app.use(cors(corsOptions));
 app.use(express.json());
-
 app.use("/api/auth", router); 
+app.use(Errhandler)
 connectdb().then(() => 
 {
     app.listen(process.env.PORT,()=>{

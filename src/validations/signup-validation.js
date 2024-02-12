@@ -9,4 +9,4 @@ const signupValidation = z.object({
 })
 
 
-module.exports = signupValidation
+module.exports = signupValidation;
